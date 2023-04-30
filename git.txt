@@ -1,0 +1,96 @@
+GIT :
+~ git commit -a -m "<m>"
+
+~ git log
+	- Options : --all --decorate --oneline --graph
+	- last recent commits and their desc
+~ git status
+	- shows if there is any new not staged changes and the checked out branch
+	- shows if there exists conflicts or they're solved and staged!
+
+~ git branch <name>
+	- create a new branch
+
+~ git branch
+	- shows all branches
+
+~ git checkout <name>
+	- change the branch
+
+~ git checkout <commit hash>
+	- change the head to a commit
+	- desc: when head is not pointing to the latest commit of branch
+		this state is called DETACHED HEAD!
+		DETACHED : (HEAD) or (HEAD, <b name>)
+		ATTACHED : (HEAD -> <b name>)
+
+		!important: if you wanna continue from a commit in past you have to:
+			- git checkout <commit hash> [detached]
+			- git branch <new branch> [detached]
+			- git checkout <new branch> [attached]
+
+~ git branch -d <branch name>
+	- deletes the branch "locally"
+	- use -D to forcefully delete the branch
+
+---------------------------
+~ git merge <branch>
+	- fast forward checked out branch to that branch (when it is direct patch)
+	- three way merge when it isn't forward path and no conflicts
+	- conflicts : solve the conflicts, stage them and commit (this is merge commit)
+
+~ git merge --abort
+	- cancels the merge process and deletes the merge markers in files
+	(when conflict happens and it is needed to solve the conflict)
+
+~ git diff <b1>..<b2>
+	- changes between these two
+~ git branch --merged
+	- show which branch is merged to which one(to safely delete)
+
+~ git branch -d <b name>
+	- delete the branch
+~ git push origin --delete <b name>
+	-delete a remote branch
+
+------------------------------
+
+~ git pull :
+	- consists of two commands:
+		git fetch => downloads the content from remote branch
+		git merge => merges the local branch to checked out branch
+
+~ git rebase master
+	- reconstruct the tree of commits and puts the branch on top of the master branch
+		then there is no need to merge and have a merge commit!
+	- before this: change the branch: git checkout <b name>
+~ git rebase -i master
+	- interactive: can change the history of your commits
+	-more : https://www.atlassian.com/git/tutorials/merging-vs-rebasing#:~:text=Merging%20is%20a%20safe%20option,onto%20the%20tip%20of%20master%20.
+
+-------------------------------
+~ git reset HEAD~
+	-undoes the last commit
+
+--------------------------------
+~ git stash
+	-
+~ git stash list
+~ git stash pop
+--------------------------------
+
+deleting remote commits!
+
+Just note to use the last_working_commit_id, when reverting a non-working commit
+
+git reset --hard <last_working_commit_id>
+So we must not reset to the commit_id that we don't want.
+
+Then sure, we must push to remote branch:
+
+git push --force
+
+-----------------------------------
+
+
+https://www.jetbrains.com/help/webstorm/apply-changes-from-one-branch-to-another.html#rebase-branch
