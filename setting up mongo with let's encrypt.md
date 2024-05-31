@@ -61,10 +61,14 @@ first open `mongosh` and
 
       net:
       ...
-      ssl:
-        mode: requireSSL
-        PEMKeyFile: /etc/ssl/mongo.pem
-
+      #old
+        ssl:
+          mode: requireSSL
+          PEMKeyFile: /etc/ssl/mongo.pem
+      #new
+        tls:
+          mode: requireTLS
+          certificateKeyFile: /etc/ssl/mongodb.pem
 
 5- connect to mongo with this connection string :
 
